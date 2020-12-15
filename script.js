@@ -12,13 +12,34 @@ window.addEventListener("load", function() {
       }
    });
 });
+window.addEventListener("load", function() {
+   let form = document.querySelector("form");
+   form.addEventListener("submit", function(event) {
+      let pilotName = document.querySelector("input[name=pilotName]");
+      let coPilotName = document.querySelector("input[name=copilotName]");
+      let fuelLevel = document.querySelector("input[name=fuelLevel]");
+      let cargoMass = document.querySelector("input[name=cargoMass]");
+      if (isNaN(pilotName) == false || isNaN(coPilotName) == false) {
+         alert("Invalid entry!");
+         event.preventDefault();
+      }
+      if (isNaN(fuelLevel) == true) {
+         alert("Fuel level must be a number!");
+         event.preventDefault();
+      }
+      if (isNaN(cargoMass) == true) {
+         alert("Cargo mass must be number!");
+         event.preventDefault();
+      }
+   })
+})
 window.addEventListener("abort", function() {
    let form = document.querySelector("form");
    form.addEventListener("submit", function() {
       let fuelLevel  = document.querySelector("input[name=fuelLevel]");
       let cargoMass = document.querySelector("input[name=cargoMass]");
       if (fuelLevel < 10,000) {
-         
+         alert('Fuel too low!')
       }
    })
 })
