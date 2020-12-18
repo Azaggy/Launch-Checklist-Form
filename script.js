@@ -18,7 +18,7 @@ window.addEventListener("abort", function() {
       let fuelLevel  = document.querySelector("input[name=fuelLevel]");
       let cargoMass = document.querySelector("input[name=cargoMass]");
       if (fuelLevel < 10,000) {
-         
+         document.getElementById("faultyItems").style.display = "visible";
       }
    })
 })
