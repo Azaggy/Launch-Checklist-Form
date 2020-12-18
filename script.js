@@ -12,6 +12,22 @@ window.addEventListener("load", function() {
       }
    });
 });
+window.addEventListener("load", function() {
+   let form = document.querySelector("form");
+   form.addEventListener("submit", function(event) {
+      let pilotName = document.querySelector("input[name=pilotName]");
+      let coPilotName = document.querySelector("input[name=copilotName]");
+      let fuelLevel = document.querySelector("input[name=fuelLevel]");
+      let cargoMass = document.querySelector("input[name=cargoMass]");
+      cargoMass = Number(cargoMass)
+      fuelLevel = Number(fuelLevel)
+      if (isNaN(pilotName) == false || isNaN(coPilotName) == false) {
+         alert("Invalid entry!");
+         event.preventDefault();
+      }
+      }
+   })
+})
 window.addEventListener("abort", function() {
    let form = document.querySelector("form");
    form.addEventListener("submit", function() {
