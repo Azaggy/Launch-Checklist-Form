@@ -25,20 +25,14 @@ window.addEventListener("load", function() {
       }
    })
 })
-window.addEventListener("submit", function() {
-   let form = document.querySelector("form");
-   form.addEventListener("submit", function() {
-      let fuelLevel  = document.querySelector("input[name=fuelLevel]");
-      let cargoMass = document.querySelector("input[name=cargoMass]");
-      if (fuelLevel < 10,000) {
-         document.getElementById("faultyItems").style.display = "visible";
+   let fuelLevel  = document.querySelector("input[name=fuelLevel]");
+   if (fuelLevel < 10,000) {
+      document.getElementsById("faultyItems").style.visibility = "visible"
+      document.getElementById("fuelStatus").innerHTML = "Fuel Level too low for the journey.";
+      document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch"
+      let launchStatus = document.querySelector("#launchStatus");
+      launchStatus.getElementsByClassName.color = "red"      
       }
-   })
-})
-let faultyItems = document.querySelector('input[id=faultyItems]');
-window.addEventListener("submit", function() {
-
-})
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
