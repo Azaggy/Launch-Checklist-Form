@@ -19,16 +19,13 @@ window.addEventListener("load", function() {
       let coPilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel = document.querySelector("input[name=fuelLevel]");
       let cargoMass = document.querySelector("input[name=cargoMass]");
-      cargoMass = Number(cargoMass)
-      fuelLevel = Number(fuelLevel)
       if (isNaN(pilotName) == false || isNaN(coPilotName) == false) {
          alert("Invalid entry!");
          event.preventDefault();
       }
-      }
    })
 })
-window.addEventListener("abort", function() {
+window.addEventListener("submit", function() {
    let form = document.querySelector("form");
    form.addEventListener("submit", function() {
       let fuelLevel  = document.querySelector("input[name=fuelLevel]");
@@ -37,6 +34,10 @@ window.addEventListener("abort", function() {
          document.getElementById("faultyItems").style.display = "visible";
       }
    })
+})
+let faultyItems = document.querySelector('input[id=faultyItems]');
+window.addEventListener("submit", function() {
+
 })
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
