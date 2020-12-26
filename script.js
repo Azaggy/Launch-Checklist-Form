@@ -36,8 +36,8 @@
          launchStatus.style.color = "red";
       } else if (fuelLevel < 10000 && cargoMass < 10000) {
          faultyItems.style.visibility = "visible";
-         pilotStatus.innerHTML = `${pilotName} is ready.`;
-         copilotStatus.innerHTML = `${coPilotName} is ready.`;
+         pilotStatus.innerHTML = `Pilot ${pilotName} is ready.`;
+         copilotStatus.innerHTML = `Co-pilot ${coPilotName} is ready.`;
          cargoStatus.innerHTML = "Cargo mass low enough for launch";
          fuelStatus.innerHTML = "Fuel Level too low for the journey.";
          launchStatus.innerHTML = "Shuttle not ready for launch";
@@ -53,6 +53,22 @@
       };
    };
 });
+window.addEventListener("load", function() {
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+      response.json().them( function(json) {
+         const div = document.getElementById("missionTarget")
+         div.innerHTML = `<h2>Mission Destination</h2>
+                <ol>
+                    <li>Name: ${json[0].name}</li>
+                    <li>Diameter: ${json[0].diameter}</li>
+                    <li>Star: ${json[0].star}</li>
+                    <li>Distance from Earth: ${json[0].distance}</li>
+                    <li>Number of Moons: ${json[0].moon}</li>
+                </ol>
+            <img src="${json[0].image}"> `
+      })
+   })
+})
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
