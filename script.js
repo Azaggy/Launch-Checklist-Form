@@ -1,38 +1,58 @@
 // Write your JavaScript code here!
-window.addEventListener("load", function() {
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
-      let pilotName = document.querySelector("input[name=pilotName]");
-      let coPilotName = document.querySelector("input[name=copilotName]");
-      let fuelLevel = document.querySelector("input[name=fuelLevel]");
-      let cargoMass = document.querySelector("input[name=cargoMass]");
-      if (pilotName.value === "" || coPilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
-      alert("All fields are required!")
       event.preventDefault();
-      }
-   });
-});
-window.addEventListener("load", function() {
-   let form = document.querySelector("form");
-   form.addEventListener("submit", function(event) {
       let pilotName = document.querySelector("input[name=pilotName]");
       let coPilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel = document.querySelector("input[name=fuelLevel]");
       let cargoMass = document.querySelector("input[name=cargoMass]");
-      if (isNaN(pilotName) == false || isNaN(coPilotName) == false) {
+      let faultyItems = document.getElementsById("faultyItems");
+      let cargoStatus = document.getElementById("cargoStatus");
+      let fuelStatus = document.getElementById("fuelStatus");
+      let launchStatus = document.getElementById("launchStatus");
+      let pilotStatus= document.getElementById("pilotStatus");
+      let copilotStatus = document.getElementById("copilotStatus");
+
+      if (pilotName.value === "" || coPilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
+      alert("All fields are required!"); 
+      } else if (isNaN(pilotName) == false || isNaN(coPilotName) == false) {
          alert("Invalid entry!");
-         event.preventDefault();
-      }
-   })
-})
-   let fuelLevel  = document.querySelector("input[name=fuelLevel]");
-   if (fuelLevel < 10,000) {
-      document.getElementsById("faultyItems").style.visibility = "visible"
-      document.getElementById("fuelStatus").innerHTML = "Fuel Level too low for the journey.";
-      document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch"
-      let launchStatus = document.querySelector("#launchStatus");
-      launchStatus.getElementsByClassName.color = "red"      
-      }
+      } else {
+         if (fuelLevel < 10000 && cargoMass > 10000) {
+      faultyItems.style.visibility = "visible";
+      pilotStatus.innerHTML = `${pilotName} is ready.`;
+      copilotStatus.innerHTML = `${coPilotName} is ready.`;
+      cargoStatus.innerHTML = "Cargo Mass too high for the journey";
+      fuelStatus.innerHTML = "Fuel Level too low for the journey.";
+      launchStatus.innerHTML = "Shuttle not ready for launch";
+      launchStatus.style.color = "red";
+      } else if (fuelLevel > 10000 && cargoMass > 10000) {
+        faultyItems.style.visibility = "visible";
+        pilotStatus.innerHTML = `${pilotName} is ready.`;
+        copilotStatus.innerHTML = `${coPilotName} is ready.`;
+         cargoStatus.innerHTML = "Cargo Mass too high for the journey"
+         fuelStatus.innerHTML = "Fuel level high enough for launch";
+         launchStatus.innerHTML = "Shuttle not ready for launch";
+         launchStatus.style.color = "red";
+      } else if (fuelLevel < 10000 && cargoMass < 10000) {
+         faultyItems.style.visibility = "visible";
+         pilotStatus.innerHTML = `${pilotName} is ready.`;
+         copilotStatus.innerHTML = `${coPilotName} is ready.`;
+         cargoStatus.innerHTML = "Cargo mass low enough for launch";
+         fuelStatus.innerHTML = "Fuel Level too low for the journey.";
+         launchStatus.innerHTML = "Shuttle not ready for launch";
+         launchStatus.style.color = "red";      
+      } else {
+            faultyItems.style.visibility = "visible";
+            pilotStatus.innerHTML = `${pilotName} is ready.`;
+            copilotStatus.innerHTML = `${coPilotName} is ready.`;
+            cargoStatus.innerHTML = "Cargo mass low enough for launch";
+            fuelStatus.innerHTML = "Fuel level high enough for launch";
+            launchStatus.innerHTML = "Shuttle ready for launch";
+            launchStatus.style.color = "green";       
+      };
+   };
+});
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
