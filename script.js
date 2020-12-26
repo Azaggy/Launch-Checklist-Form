@@ -1,4 +1,22 @@
 // Write your JavaScript code here!
+window.addEventListener("load", function() {
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+      return response.json().then( function(json) {
+         console.log(json);
+         let missionTarget = document.getElementById("missionTarget");
+         missionTarget.innerHTML = "";
+         missionTarget.innerHTML += `<h2>Mission Destination</h2>
+                <ol>
+                    <li>Name: ${json[0].name}</li>
+                    <li>Diameter: ${json[0].diameter}</li>
+                    <li>Star: ${json[0].star}</li>
+                    <li>Distance from Earth: ${json[0].distance}</li>
+                    <li>Number of Moons: ${json[0].moons}</li>
+                </ol>
+            <img src=${json[0].image}> 
+            </img>`
+      });
+   });
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
       event.preventDefault();
@@ -6,7 +24,7 @@
       let coPilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel = document.querySelector("input[name=fuelLevel]");
       let cargoMass = document.querySelector("input[name=cargoMass]");
-      let faultyItems = document.getElementsById("faultyItems");
+      let faultyItems = document.getElementById("faultyItems");
       let cargoStatus = document.getElementById("cargoStatus");
       let fuelStatus = document.getElementById("fuelStatus");
       let launchStatus = document.getElementById("launchStatus");
@@ -15,60 +33,47 @@
 
       if (pilotName.value === "" || coPilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
       alert("All fields are required!"); 
-      } else if (isNaN(pilotName) == false || isNaN(coPilotName) == false) {
+      } else if (isNaN(pilotName.value) === false || isNaN(coPilotName.value) === false || isNaN(fuelLevel.value) || isNaN(cargoMass.value)) {
          alert("Invalid entry!");
       } else {
-         if (fuelLevel < 10000 && cargoMass > 10000) {
+         if (fuelLevel.value < 10000 && cargoMass.value > 10000) {
       faultyItems.style.visibility = "visible";
-      pilotStatus.innerHTML = `${pilotName} is ready.`;
-      copilotStatus.innerHTML = `${coPilotName} is ready.`;
+      pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
+      copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
       cargoStatus.innerHTML = "Cargo Mass too high for the journey";
       fuelStatus.innerHTML = "Fuel Level too low for the journey.";
       launchStatus.innerHTML = "Shuttle not ready for launch";
       launchStatus.style.color = "red";
-      } else if (fuelLevel > 10000 && cargoMass > 10000) {
+
+      } else if (fuelLevel.value > 10000 && cargoMass.value > 10000) {
         faultyItems.style.visibility = "visible";
-        pilotStatus.innerHTML = `${pilotName} is ready.`;
-        copilotStatus.innerHTML = `${coPilotName} is ready.`;
+        pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
+        copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
          cargoStatus.innerHTML = "Cargo Mass too high for the journey"
          fuelStatus.innerHTML = "Fuel level high enough for launch";
          launchStatus.innerHTML = "Shuttle not ready for launch";
          launchStatus.style.color = "red";
-      } else if (fuelLevel < 10000 && cargoMass < 10000) {
+
+      } else if (fuelLevel.value < 10000 && cargoMass.value < 10000) {
          faultyItems.style.visibility = "visible";
-         pilotStatus.innerHTML = `Pilot ${pilotName} is ready.`;
-         copilotStatus.innerHTML = `Co-pilot ${coPilotName} is ready.`;
+         pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
+         copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
          cargoStatus.innerHTML = "Cargo mass low enough for launch";
          fuelStatus.innerHTML = "Fuel Level too low for the journey.";
          launchStatus.innerHTML = "Shuttle not ready for launch";
          launchStatus.style.color = "red";      
+
       } else {
             faultyItems.style.visibility = "visible";
-            pilotStatus.innerHTML = `${pilotName} is ready.`;
-            copilotStatus.innerHTML = `${coPilotName} is ready.`;
+            pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
+            copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
             cargoStatus.innerHTML = "Cargo mass low enough for launch";
             fuelStatus.innerHTML = "Fuel level high enough for launch";
             launchStatus.innerHTML = "Shuttle ready for launch";
-            launchStatus.style.color = "green";       
-      };
-   };
+            launchStatus.style.color = "green";      
+      }}
+   });
 });
-window.addEventListener("load", function() {
-   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
-      response.json().them( function(json) {
-         const div = document.getElementById("missionTarget")
-         div.innerHTML = `<h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: ${json[0].name}</li>
-                    <li>Diameter: ${json[0].diameter}</li>
-                    <li>Star: ${json[0].star}</li>
-                    <li>Distance from Earth: ${json[0].distance}</li>
-                    <li>Number of Moons: ${json[0].moon}</li>
-                </ol>
-            <img src="${json[0].image}"> `
-      })
-   })
-})
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
