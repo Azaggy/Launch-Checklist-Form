@@ -2,9 +2,9 @@
 window.addEventListener("load", function() {
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
       return response.json().then( function(json) {
-         console.log(json);
+         // console.log(json);
          let missionTarget = document.getElementById("missionTarget");
-         missionTarget.innerHTML = "";
+         // missionTarget.innerHTML = "";
          missionTarget.innerHTML += `<h2>Mission Destination</h2>
                 <ol>
                     <li>Name: ${json[0].name}</li>
@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
                     <li>Number of Moons: ${json[0].moons}</li>
                 </ol>
             <img src=${json[0].image}> 
-            </img>`
+            `
       });
    });
    let form = document.querySelector("form");
@@ -37,40 +37,42 @@ window.addEventListener("load", function() {
          alert("Invalid entry!");
       } else {
          if (fuelLevel.value < 10000 && cargoMass.value > 10000) {
-      faultyItems.style.visibility = "visible";
-      pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
-      copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
-      cargoStatus.innerHTML = "Cargo Mass too high for the journey";
-      fuelStatus.innerHTML = "Fuel Level too low for the journey.";
-      launchStatus.innerHTML = "Shuttle not ready for launch";
-      launchStatus.style.color = "red";
+      // faultyItems.style.visibility = "visible";
+            pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
+            copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
+            cargoStatus.innerHTML = "Cargo Mass too high for the journey";
+            fuelStatus.innerHTML = "Fuel Level too low for the journey.";
+            launchStatus.innerHTML = "Shuttle not ready for launch";
+            launchStatus.style.color = "red";
+            faultyItems.style.visibility = "visible";
 
-      } else if (fuelLevel.value > 10000 && cargoMass.value > 10000) {
-        faultyItems.style.visibility = "visible";
-        pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
-        copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
-         cargoStatus.innerHTML = "Cargo Mass too high for the journey"
-         fuelStatus.innerHTML = "Fuel level high enough for launch";
-         launchStatus.innerHTML = "Shuttle not ready for launch";
-         launchStatus.style.color = "red";
 
-      } else if (fuelLevel.value < 10000 && cargoMass.value < 10000) {
-         faultyItems.style.visibility = "visible";
-         pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
-         copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
-         cargoStatus.innerHTML = "Cargo mass low enough for launch";
-         fuelStatus.innerHTML = "Fuel Level too low for the journey.";
-         launchStatus.innerHTML = "Shuttle not ready for launch";
-         launchStatus.style.color = "red";      
+         }else if (fuelLevel.value > 10000 && cargoMass.value > 10000) {
+            faultyItems.style.visibility = "visible";
+            pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
+            copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
+            cargoStatus.innerHTML = "Cargo Mass too high for the journey"
+            fuelStatus.innerHTML = "Fuel level high enough for launch";
+            launchStatus.innerHTML = "Shuttle not ready for launch";
+            launchStatus.style.color = "red";
 
-      } else {
+         } else if (fuelLevel.value < 10000 && cargoMass.value < 10000) {
             faultyItems.style.visibility = "visible";
             pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
             copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
             cargoStatus.innerHTML = "Cargo mass low enough for launch";
-            fuelStatus.innerHTML = "Fuel level high enough for launch";
-            launchStatus.innerHTML = "Shuttle ready for launch";
-            launchStatus.style.color = "green";      
+            fuelStatus.innerHTML = "Fuel Level too low for the journey.";
+            launchStatus.innerHTML = "Shuttle not ready for launch";
+            launchStatus.style.color = "red";      
+
+         } else {
+               faultyItems.style.visibility = "visible";
+               pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready.`;
+               copilotStatus.innerHTML = `Co-pilot ${coPilotName.value} is ready.`;
+               cargoStatus.innerHTML = "Cargo mass low enough for launch";
+               fuelStatus.innerHTML = "Fuel level high enough for launch";
+               launchStatus.innerHTML = "Shuttle ready for launch";
+               launchStatus.style.color = "green";      
       }}
    });
 });
